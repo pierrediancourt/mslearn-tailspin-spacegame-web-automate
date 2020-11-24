@@ -82,6 +82,6 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure App Service Deploy: website'
             inputs:
-              azureSubscription: 'mslearn-tailspin-spacegame-web-automate'
+              azureSubscription: 'mslearn-tailspin-spacegame-web-automate_pipeline'
               appName: '$(WebAppNameDev)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
