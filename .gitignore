@@ -328,3 +328,15 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# for security
+# and because we use a remote storage for that
+*.tfstate
+.terraform
+# because we generate them dynamically from powershell
+*.tfvars
+# temporary files
+*.tfplan
+
+# dev env specific
+.vscode
