@@ -27,9 +27,9 @@ stages:
 
     - task: Npm@1
       displayName: 'Run npm install'
-      workingDirectory: 'src'
       inputs:
         verbose: false
+        workingDirectory: 'src'
 
     - script: './node_modules/.bin/node-sass $(wwwrootDir) --output $(wwwrootDir)'
       displayName: 'Compile Sass assets'
@@ -44,28 +44,28 @@ stages:
 
     - task: DotNetCoreCLI@2
       displayName: 'Restore project dependencies'
-      workingDirectory: 'src'
       inputs:
         command: 'restore'
         projects: '**/*.csproj'
+        workingDirectory: 'src'
 
     - task: DotNetCoreCLI@2
       displayName: 'Build the project - $(buildConfiguration)'
-      workingDirectory: 'src'
       inputs:
         command: 'build'
         arguments: '--no-restore --configuration $(buildConfiguration)'
         projects: '**/*.csproj'
+        workingDirectory: 'src'
 
     - task: DotNetCoreCLI@2
       displayName: 'Publish the project - $(buildConfiguration)'
-      workingDirectory: 'src'
       inputs:
         command: 'publish'
         projects: '**/*.csproj'
         publishWebProjects: false
         arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
         zipAfterPublish: true
+        workingDirectory: 'src'
 
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
